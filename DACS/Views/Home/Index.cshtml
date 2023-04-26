@@ -1,0 +1,121 @@
+﻿@model PagedList.IPagedList<DACS.Models.Sach>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    function addToCart(id) {
+        $.ajax({
+            type: 'POST', // phương thức truyền dữ liệu POST
+            url: "@Url.Action("ThemGioHang", "GioHang")", // gửi dữ liệu tới Action ThemGioHang trong Controller GioHang
+            data: { id: id },
+            success: function (result) {
+                if (result.success == true) {
+                    getGioHangPartial(); // hàm cập nhật lại số lượng giỏ hàng ở menu
+                    alert(result.message);  // thông báo thành công
+                }
+            }
+        });
+    }
+</script>
+<h2>HUTECH SÁCH</h2>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel panel-heading">
+                    <b style="color:red">@item.tensach</b>
+                </div>
+                <div class="panel-body">
+                    <p><strong>Giá: </strong>@item.giaban</p>
+                    <p><strong>Ngày cập nhật: </strong>@item.ngaycapnhat</p>
+                    <p><strong>Số lượng tồn: </strong>@item.soluongton</p>
+                    <p><img src="@item.hinh" class="img-fluid" alt="hinh thumnail"></p>
+                </div>
+                <div class="panel-footer clearfix">
+                    <div class="pull-right">
+                        <div class="DatMua">
+                            <a class="btn btn-success" onclick="addToCart(@item.masach)">Đặt mua</a>
+                        </div>
+                        @*<a href="#" class="btn btn-primary">Order</a>
+                            @Html.ActionLink("Read more...", "Detail", new
+                            {
+                                id =
+                            item.masach
+                            }, new { @class = "btn btn-default" })*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div>
+    <div style="padding-top: 12px">
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) /
+        @Model.PageCount
+    </div>
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new
+        {
+            page = page
+        }), new PagedListRenderOptions
+        {
+            LiElementClasses = new string[] { "page-item" }
+        })
+    </div>
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>
+<style type="text/css">
+    #mau-nut a {
+        clear: both;
+        background-color: orange;
+        color: snow;
+    }
+
+        #mau-nut a:hover {
+            background-color: darkcyan;
+            color: snow;
+        }
+</style>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        //$('a#datmua').click(function (e) {
+        //    e.preventDefault();
+
+        //});
+        var maxLength = 100;
+        $(".show-read-more").each(function () {
+            var myStr = $(this).text();
+            if ($.trim(myStr).length > maxLength) {
+                var newStr = myStr.substring(0, maxLength);
+                var removedStr = myStr.substring(maxLength, $.trim(myStr).length);
+                $(this).empty().html(newStr);
+                $(this).append(' <a href="javascript:void(0);" class="read-more">đọc tiếp...</a>');
+                $(this).append('<span class="more-text">' + removedStr +
+                    '</span>');
+            }
+        });
+        $(".read-more").click(function () {
+            $(this).siblings(".more-text").contents().unwrap();
+            $(this).remove();
+        });
+    });</script>
+<style>
+    .show-read-more .more-text {
+        display: none;
+    }
+
+    .page-item > a {
+        position: relative;
+        display: block;
+        padding: 12px;
+    }
+</style>

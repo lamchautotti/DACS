@@ -1,0 +1,65 @@
+﻿@model DACS.Models.Sach
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detail</h2>
+
+<div>
+    <h4>Sach</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <label class="control-label col-md-2"><b>Mã Loại</b></label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.maloai)
+        </dd>
+
+        <dt>
+            <label class="control-label col-md-2"><b>Tên sách</b></label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tensach)
+        </dd>
+
+        <dt>
+            <label class="control-label col-md-2"><b>Hình</b></label>
+        </dt>
+
+        <img src="@Html.DisplayFor(model => model.hinh)" class="img-fluid" style="width: 300px" />
+        <dt>
+            <label class="control-label col-md-2"><b>Giá bán</b></label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.giaban)
+        </dd>
+
+        <dt>
+            <label class="control-label col-md-2"><b>Ngày cập nhật</b></label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngaycapnhat)
+        </dd>
+
+        <dt>
+            <label class="control-label col-md-2"><b>Số lượng tồn</b></label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.soluongton)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.masach }) |
+    @Html.ActionLink("Back to List", "ListSach")
+</p>
+
+

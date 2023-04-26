@@ -1,0 +1,72 @@
+﻿@model DACS.Models.Sach
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Sach</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <label class="control-label col-md-2"><b>Mã Loại</b></label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.maloai)
+        </dd>
+
+        <dt>
+            <label class="control-label col-md-2"><b>Tên Sách</b></label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tensach)
+        </dd>
+
+        <dt>
+            <label class="control-label col-md-2"><b>Hình</b></label>
+        </dt>
+
+        <img src="@Html.DisplayFor(model => model.hinh)" class="img-fluid" style="width: 300px" />
+        <dt>
+            <label class="control-label col-md-2"><b>Giá Bán</b></label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.giaban)
+        </dd>
+
+        <dt>
+            <label class="control-label col-md-2"><b>Ngày Cập Nhật</b></label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngaycapnhat)
+        </dd>
+
+        <dt>
+            <label class="control-label col-md-2"><b>Số Lượng Tồn</b></label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.soluongton)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
+
+

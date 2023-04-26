@@ -1,0 +1,16 @@
+﻿<a class="nav-link" href="@Url.Action("GioHang", "GioHang")" style="font-weight:bold; text-decoration:none; color: red">
+    Giỏ hàng (<span id="totalCart"></span>)
+</a>
+<script type="text/javascript">
+    function layTongSoLuongSP() {
+        $.ajax({
+            type: 'POST',
+            url: "@Url.Action("TongSoLuongSanPhamJson", "GioHang")",
+            success: function (result) {
+                $("#totalCart").html(result.tsl); // gán html (kết quả) cho phần tử có id là totalCart
+            }
+        });
+    }
+    layTongSoLuongSP();
+</script>
+

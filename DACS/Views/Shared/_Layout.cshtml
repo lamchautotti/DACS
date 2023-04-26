@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - do an co so</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body onload="getGioHangPartial();">
+    <!-- sự kiện onload được kích hoạt mỗi khi load trang -->
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+        <div class="container">
+            @Html.ActionLink("ListSach-Lab04", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    @if (Session["User"] != null)
+                    {
+                        <li>@Html.ActionLink("Đăng Xuất", "DangXuat", "NguoiDung", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("List Sách (Phân trang)", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("List Sách (Thường)", "ListSach", "Sach", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li id="GioHangPartial"></li>
+                        using (Html.BeginForm("Index", "Home", FormMethod.Get, new { @class = "form-inline" }))
+                        {
+                            <div class="form-group form-inline" style="display: flex;">
+                                <input type="text" class="form-control col-md-10" value="@ViewBag.Keyword" name="searchString" placeholder="Nhập tên sách cần tìm">
+                                <input type="submit" class="btn btn-info" value="Tìm Sách" style="margin-left:10px;">
+                            </div>
+                        }
+
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Đăng nhập", "DangNhap", "NguoiDung", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Đăng ký", "DangKy", "NguoiDung", new { area = "" }, new { @class = "nav-link" })</li>
+
+                    }
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        @RenderSection("upload", required: false)
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - do an co so</p>
+        </footer>
+    </div>
+    <script type="text/javascript">
+        function getGioHangPartial() {
+            $.ajax({
+                type: 'GET',
+                url: "@Url.Action("GioHangPartial", "GioHang")",
+                success: function (result) {
+                    $("#GioHangPartial").html(result);
+                }
+            });
+        }
+    </script>
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
