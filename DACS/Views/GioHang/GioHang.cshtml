@@ -14,13 +14,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.tensach)
+            @Html.DisplayNameFor(model => model.tendv)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.hinh)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.giaban)
+            @Html.DisplayNameFor(model => model.goigio)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.iSoluong)
@@ -35,19 +35,19 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.tensach)
+                @Html.DisplayFor(modelItem => item.tendv)
             </td>
             <td>
                 <img src="@Html.DisplayFor(modelItem => item.hinh)" style="width: 180px" />
             </td>
-            @using (Html.BeginForm("Capnhatgiohang", "Giohang", new { @id = item.masach }))
+            @using (Html.BeginForm("Capnhatgiohang", "GioHang", new { @id = item.madv }))
             {
-                <td>@String.Format("{0:0,0}", item.giaban) VNĐ</td>
+                <td>@String.Format("{0:0,0}", item.goigio) Giờ</td>
                 <td><input type="number" min="0" name="txtSoLg" value="@item.iSoluong" /></td>
                 <td>@Html.DisplayFor(modelItem => item.dThanhtien)</td>
                 <td>
-                    <a href="@Url.Action("Detail", "Sach", new {@id = item.masach })">Chi tiết</a> |
-                    <a href="@Url.Action("XoaGiohang", "GioHang", new {@id = item.masach })">Xóa</a>
+                    <a href="@Url.Action("Detail", "DichVu", new {@id = item.madv })">Chi tiết</a> |
+                    <a href="@Url.Action("XoaGiohang", "GioHang", new {@id = item.madv })">Xóa</a>
                 </td>
                 <td><input type="submit" value="Cập nhật" class="btn btn-success" /></td>
             }
@@ -55,8 +55,8 @@
         </tr>
     }
     <tr style="font-weight:bold; text-align: left; color:red">
-        <td colspan="2"> Số loại sách: @ViewBag.Tongsoluongsanpham </td>
-        <td colspan="2"> Số lượng sách: @ViewBag.Tongsoluong </td>
+        <td colspan="2"> Số loại dịch vụ: @ViewBag.Tongsoluongsanpham </td>
+        <td colspan="2"> Số lượng dịch vụ: @ViewBag.Tongsoluong </td>
         <td colspan="4">
             Tổng tiền: @String.Format("{0:0,0}", @ViewBag.Tongtien) VNĐ
         </td>
@@ -68,7 +68,7 @@
     </tr>
     <tr style="font-weight:bold; color: yellow; text-align:right">
         <td colspan="5">
-            @Html.ActionLink("Đặt hàng", "Dathang", "GioHang")
+            @Html.ActionLink("Đặt hàng", "DatHang", "GioHang")
         </td>
     </tr>
 </table>

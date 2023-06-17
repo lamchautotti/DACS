@@ -2,9 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
+using System.Text.RegularExpressions;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DACS.Controllers
 {
@@ -62,18 +65,18 @@ namespace DACS.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Dangky(FormCollection collection, KhachHang kh)
+        public ActionResult Dangky(FormCollection collection, TaiKhoanND kh)
         {
-            var hoten = collection["hoten"];
-            var tendangnhap = collection["tendangnhap"];
-            var matkhau = collection["matkhau"];
+            var tentk = collection["TenTK"];
+            var matkhau = collection["MK"];
+            var tennd = collection["TenND"];
             var MatkhauXacNhan = collection["MatkhauXacNhan"];
-            var email = collection["email"];
-            var diachi = collection["diachi"];
-            var dienthoai = collection["dienthoai"];
-            var ngaysinh = String.Format("{0:MM/dd/yyyy}", collection["ngaysinh"]);
-            var checkEmail = data.KhachHangs.FirstOrDefault(x => x.email == email);
-            var checkTendangnhap = data.KhachHangs.FirstOrDefault(x => x.tendangnhap == tendangnhap);
+            var dienthoai = collection["SDT"];
+            var email = collection["Mail"];
+            var cccd = collection["CCCD"];
+            var MaND = collection["MND"];
+            var checkEmail = data.TaiKhoanNDs.FirstOrDefault(x => x.Mail == email);
+            var checkTendangnhap = data.TaiKhoanNDs.FirstOrDefault(x => x.TenTK == tentk);
             if (String.IsNullOrEmpty(MatkhauXacNhan))
             {
                 TempData["Error"] = "Phải nhập mật khẩu xác nhận!";
@@ -104,14 +107,14 @@ namespace DACS.Controllers
             }
             else
             {
-                kh.hoten = hoten;
-                kh.tendangnhap = tendangnhap;
-                kh.matkhau = matkhau;
-                kh.email = email;
-                kh.diachi = diachi;
-                kh.dienthoai = dienthoai;
-                kh.ngaysinh = DateTime.Parse(ngaysinh);
-                data.KhachHangs.InsertOnSubmit(kh);
+                kh.TenTK = tentk;
+                kh.MK = matkhau;
+                kh.TenND = tennd;
+                kh.SDT = dienthoai;
+                kh.Mail = email;
+                kh.CCCD = cccd;
+                kh.MND = 2;
+                data.TaiKhoanNDs.InsertOnSubmit(kh);
                 data.SubmitChanges();
                 return RedirectToAction("DangNhap");
             }
@@ -126,24 +129,31 @@ namespace DACS.Controllers
         [HttpPost]
         public ActionResult DangNhap(FormCollection collection)
         {
-            var tendangnhap = collection["tendangnhap"];
-            var matkhau = collection["matkhau"];
-            KhachHang kh = data.KhachHangs.SingleOrDefault(n => n.tendangnhap == tendangnhap && n.matkhau == matkhau);
+            var tentk = collection["TenTK"];
+            var matkhau = collection["MK"];
+            TaiKhoanND kh = data.TaiKhoanNDs.SingleOrDefault(n => n.TenTK == tentk && n.MK == matkhau);
             if (kh != null)
             {
-                Session["User"] = kh;
-                return RedirectToAction("Index", "Home");
+                if(kh.MND == 2)
+                {
+                    Session["TaiKhoanND"] = kh;
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                    Session["TaiKhoanND"] = kh;
+                    return RedirectToAction("ListDichVu", "DichVu");
             }
             else
             {
                 TempData["Error"] = "Tên đăng nhập hoặc mật khẩu không đúng";
             }
-            return this.DangNhap();
+            
+                return this.DangNhap();
         }
         [HttpGet]
         public ActionResult DangXuat()
         {
-            Session.Remove("User");
+            Session["TaiKhoanND"]=null;
             return RedirectToAction("DangNhap", "NguoiDung");
         }
     }

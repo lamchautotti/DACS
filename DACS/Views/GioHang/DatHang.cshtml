@@ -18,11 +18,11 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>@Html.DisplayFor(modelItem => item.masach)</td>
-            <td>@Html.DisplayFor(modelItem => item.tensach)</td>
-            <td><img src="@item.hinh" width="200" /></td> @using (Html.BeginForm("CapnhatGiohang", "Giohang", new { @id = item.masach }))
+            <td>@Html.DisplayFor(modelItem => item.madv)</td>
+            <td>@Html.DisplayFor(modelItem => item.tendv)</td>
+            <td><img src="@item.hinh" width="200" /></td> @using (Html.BeginForm("CapnhatGiohang", "Giohang", new { @id = item.madv }))
             {
-                <td>@String.Format("{0:0,0}", item.giaban) VNĐ</td>
+                <td>@String.Format("{0:0,0}", item.gia) VNĐ</td>
                 <td>@Html.DisplayFor(modelItem => item.iSoluong)</td>
                 <td>@Html.DisplayFor(modelItem => item.dThanhtien)</td>
             }
@@ -47,7 +47,7 @@
 
 <h2 style="text-align:center">Thông tin đặt hàng</h2>
 @{
-    KhachHang kh = (KhachHang)Session["User"];
+    TaiKhoanND kh = (TaiKhoanND)Session["TaiKhoanND"];
 } <table align="center">
     @using (Html.BeginForm())
     {
@@ -55,28 +55,28 @@
         @Html.ValidationSummary(true)
         <tr style="height: 40px">
             <td>Họ tên khách hàng: </td>
-            <td style="font-weight:bold">@kh.hoten</td>
+            <td style="font-weight:bold">@kh.TenND</td>
         </tr>
         <tr style="height: 40px">
             <td>Email: </td>
-            <td style="font-weight:bold">@kh.email</td>
+            <td style="font-weight:bold">@kh.Mail</td>
         </tr>
         <tr style="height: 40px">
-            <td>Dia chi: </td>
-            <td style="font-weight:bold">@kh.diachi</td>
+            <td>Địa chỉ: </td>
+            <td style="font-weight:bold">@kh.DiaChi</td>
         </tr>
         <tr style="height: 40px">
             <td>Điện thoại: </td>
-            <td style="font-weight:bold">@kh.dienthoai</td>
+            <td style="font-weight:bold">@kh.SDT</td>
         </tr>
         <tr style="height: 40px">
             <td>Ngày đặt: </td>
             <td style="font-weight:bold">@DateTime.Now.ToShortDateString()</td>
         </tr>
         <tr style="height: 40px">
-            <td>Ngày giao: </td>
+            <td>Ngày thực hiện: </td>
             <td style="font-weight:bold">
-                <input type="date" name="NgayGiao" />
+                <input type="date" name="NgayThucHien" />
             </td>
         </tr>
         <tr style="height: 40px">

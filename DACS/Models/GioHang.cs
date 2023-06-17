@@ -10,28 +10,31 @@ namespace DACS.Models
     public class Giohang
     {
         MyDataDataContext data = new MyDataDataContext();
-        public int masach { get; set; }
-        [Display(Name = "Tên sách")]
-        public string tensach { get; set; }
-        [Display(Name = "Ảnh bìa")]
+        public int madv { get; set; }
+        [Display(Name = "Tên dich vu")]
+        public string tendv { get; set; }
+        [Display(Name = "Hinh")]
         public string hinh { get; set; }
-        [Display(Name = "Giá bán")]
-        public Double giaban { get; set; }
+        [Display(Name = "Gói giờ")]
+        public string goigio { get; set; }
+        [Display(Name = "Giá ")]
+        public Double gia { get; set; }
         [Display(Name = "Số lượng")]
         public int iSoluong { get; set; }
         [Display(Name = "Thành tiền")]
         public Double dThanhtien
         {
-            get { return iSoluong * giaban; }
+            get { return iSoluong * gia; }
         }
         public Giohang(int id)
         {
-            masach = id;
-            Sach sach = data.Saches.Single(n => n.masach == masach);
-            tensach = sach.tensach;
-            hinh = sach.hinh;
+            madv = id;
+            DichVu dichvu = data.DichVus.Single(n =>n.MaDV == madv);
+            tendv = dichvu.TenDV;
+            hinh = dichvu.Hinh;
+            goigio = dichvu.GoiGio;
             iSoluong = 1;
-            giaban = double.Parse(sach.giaban.ToString());
+            gia = double.Parse(dichvu.GiaDV.ToString());
         }
 
         public Giohang()

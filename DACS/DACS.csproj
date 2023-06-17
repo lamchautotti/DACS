@@ -122,7 +122,7 @@
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NguoiDungController.cs" />
-    <Compile Include="Controllers\SachController.cs" />
+    <Compile Include="Controllers\DichVuController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -139,6 +139,7 @@
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
     <Content Include="Content\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\bootstrap-icons.css" />
     <Content Include="Content\bootstrap-reboot.css" />
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap-reboot.rtl.css" />
@@ -151,8 +152,15 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\images\0fd3416c.jpeg" />
+    <Content Include="Content\images\68f64b9d.jpeg" />
+    <Content Include="Content\images\865014845-02.jpeg" />
+    <Content Include="Content\images\8ad73f3c.jpeg" />
+    <Content Include="Content\images\admin.jpg" />
     <Content Include="Content\images\banner-sach2.png" />
     <Content Include="Content\images\banner.jpg" />
+    <Content Include="Content\images\banner1.png" />
+    <Content Include="Content\images\banner2.png" />
     <Content Include="Content\images\book1.jpg" />
     <Content Include="Content\images\book10.jpg" />
     <Content Include="Content\images\book2.jpg" />
@@ -163,6 +171,20 @@
     <Content Include="Content\images\book7.jpg" />
     <Content Include="Content\images\book8.jpg" />
     <Content Include="Content\images\book9.png" />
+    <Content Include="Content\images\cart-icon-10.png" />
+    <Content Include="Content\images\dv1.jpg" />
+    <Content Include="Content\images\dv2.jpg" />
+    <Content Include="Content\images\dv3.jpg" />
+    <Content Include="Content\images\dv4.jpg" />
+    <Content Include="Content\images\gggg.jpg" />
+    <Content Include="Content\images\login.jpg" />
+    <Content Include="Content\images\z4372514599012_23e7a9723f3b72b82f3305a0447820b3.jpg" />
+    <Content Include="Content\images\z4372566872233_5bd55dcad9e16e21b60ab027c727c171.jpg" />
+    <Content Include="Content\images\z4372592624534_08c7b15cc2717eafc18da03c9651a016.jpg" />
+    <Content Include="Content\images\z4372592629489_5cc482e0bb4e2774e7a7ec4c1c2976e9.jpg" />
+    <Content Include="Content\images\z4372592641273_6964351d52428e08aa967fd36d7c3bf1.jpg" />
+    <Content Include="Content\images\z4372598783577_75cf87524102b39f512b54365e632ce1.jpg" />
+    <Content Include="Content\images\z4378231605973_372b0acf00bf1acbe91369e4168ba01a.jpg" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -213,7 +235,14 @@
     <Content Include="Views\Sach\Delete.cshtml" />
     <Content Include="Views\Sach\Detail.cshtml" />
     <Content Include="Views\Sach\Edit.cshtml" />
-    <Content Include="Views\Sach\ListSach.cshtml" />
+    <Content Include="Views\Shared\ErrorsAlert.cshtml" />
+    <Content Include="Views\DichVu\ListDichVu.cshtml" />
+    <Content Include="Views\DichVu\Detail.cshtml" />
+    <Content Include="Views\DichVu\Create.cshtml" />
+    <Content Include="Views\DichVu\Edit.cshtml" />
+    <Content Include="Views\DichVu\Delete.cshtml" />
+    <Content Include="Views\Shared\_DiffLayOut.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

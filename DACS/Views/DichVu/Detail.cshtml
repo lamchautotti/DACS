@@ -1,0 +1,51 @@
+﻿@model DACS.Models.DichVu
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Detail</h2>
+
+<div>
+    <h4>DichVu</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <label class="control-label col-md-2"><b>Tên dịch vụ</b></label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenDV)
+        </dd>
+
+        <dt>
+            <label class="control-label col-md-2"><b>Hình</b></label>
+        </dt>
+
+        <dd>
+            <img src="@Html.DisplayFor(model => model.Hinh)" class="img-fluid" style="width: 300px" />
+        </dd>
+
+        <dt>
+            <label class="control-label col-md-2"><b>Gói giờ</b></label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GoiGio)
+        </dd>
+
+        <dt>
+            <label class="control-label col-md-2"><b>Giá</b></label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GiaDV)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaDV }) |
+    @Html.ActionLink("Quay lại", "ListDichVu")
+</p>

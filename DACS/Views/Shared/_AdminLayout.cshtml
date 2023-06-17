@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - do an co so</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+          rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css"
+          rel="stylesheet" />
+</head>
+<body onload="getGioHangPartial();">
+    <!-- sự kiện onload được kích hoạt mỗi khi load trang -->
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark" style="background-color:black">
+        <div class="container">
+            @Html.ActionLink("Sách", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+
+                    @if (Session["TaiKhoanND"] == null)
+                    {
+
+                        <li>@Html.ActionLink("Đăng nhập", "DangNhap", "NguoiDung", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Đăng ký", "DangKy", "NguoiDung", new { area = "" }, new { @class = "nav-link" })</li>
+                        <div class="form-group form-inline" style="display: flex;">
+                            <a href="/DichVu/ListDichVu" style="color:gray">Admin</a>
+                            <input type="text" class="form-control col-md-10" value="@ViewBag.Keyword" name="searchString" placeholder="Nhập tên sách cần tìm">
+                            <input type="submit" class="btn btn-info" value="Tìm Sách" style="margin-left:10px;">
+                        </div>
+                    }
+
+                    else
+                    {
+
+                        using (Html.BeginForm("Index", "Home", FormMethod.Get, new { @class = "form-inline" }))
+                        {
+
+                            <div class="form-group form-inline" style="display: flex;">
+                                <a href="/DichVu/ListDichVu" style="color:gray">Admin</a>
+                                <input type="text" class="form-control col-md-10" value="@ViewBag.Keyword" name="searchString" placeholder="Nhập tên sách cần tìm">
+                                <input type="submit" class="btn btn-info" value="Tìm Sách" style="margin-left:10px;">
+                            </div>
+                        }
+
+
+
+                    }
+
+                </ul>
+                <div class="navbar-right">
+                    @if (Session["TaiKhoanND"] != null)
+                    {
+                        <a href=@Url.Action("Dangxuat","NguoiDung") style="color:grey"> | Đăng Xuất</a>
+
+                    }
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </nav>
+    <table class="table">
+        <tr style="text-align:center">
+            <td><img src="~/Content/images/admin.jpg" /></td>
+        </tr>
+    </table>
+    <div class="container body-content">
+        @RenderBody()
+        @RenderSection("upload", required: false)
+        <hr />
+        <footer class="text-center text-lg-start bg-light text-muted">
+            <section class="">
+                <div class="container text-center text-md-start mt-5">
+
+                    <div class="row mt-3">
+
+                        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+
+                            <h6 class="text-uppercase fw-bold mb-4">
+                                GIỚI THIỆU
+                            </h6>
+                            <p>
+                                Website cung cấp cách dịch vụ hỗ trợ đến người dùng.
+                            </p>
+                        </div>
+
+                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+                            <h6 class="text-uppercase fw-bold mb-4">
+                                Hỗ trợ
+                            </h6>
+                            <p>
+                                <a href="#!" class="text-reset">Câu hỏi thường gặp</a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-reset">Điều khoản & Điều kiện</a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-reset">Báo lỗi</a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-reset">Hotline Hỗ trợ</a>
+                            </p>
+                        </div>
+
+                        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+                            <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                            <p><i class="fas fa-home me-3"></i>VN,TP HCM , Quận 9</p>
+                            <p>
+                                <i class="fas fa-envelope me-3"></i>
+                                doancosohutech@gmail.com
+                            </p>
+                            <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
+                            <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </section>
+
+            <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+                © 2023 Copyright:
+                <a class="text-reset fw-bold" href="#">Đồ án cơ sở</a>
+            </div>
+        </footer>
+    </div>
+    <script type="text/javascript">
+        function getGioHangPartial() {
+            $.ajax({
+                type: 'GET',
+                url: "@Url.Action("GioHangPartial", "GioHang")",
+                success: function (result) {
+                    $("#GioHangPartial").html(result);
+                }
+            });
+        }
+    </script>
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

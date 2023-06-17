@@ -1,8 +1,8 @@
-﻿@model PagedList.IPagedList<DACS.Models.Sach>
+﻿@model PagedList.IPagedList<DACS.Models.DichVu>
 @using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_DiffLayOut.cshtml";
 }
 <script type="text/javascript">
     function addToCart(id) {
@@ -19,25 +19,26 @@
         });
     }
 </script>
-<h2>HUTECH SÁCH</h2>
+<h2>Dịch vụ</h2>
 <div class="row">
     @foreach (var item in Model)
     {
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
             <div class="panel panel-default">
                 <div class="panel panel-heading">
-                    <b style="color:red">@item.tensach</b>
+                    <p><b>Dịch vụ: </b><b style="color:red">@item.TenDV</b></p>
                 </div>
                 <div class="panel-body">
-                    <p><strong>Giá: </strong>@item.giaban</p>
-                    <p><strong>Ngày cập nhật: </strong>@item.ngaycapnhat</p>
-                    <p><strong>Số lượng tồn: </strong>@item.soluongton</p>
-                    <p><img src="@item.hinh" class="img-fluid" alt="hinh thumnail"></p>
+                    <p><strong>Giá: </strong>@item.GiaDV</p>
+                    <p><img src="@item.Hinh" class="img-fluid" alt="hinh thumnail"></p>
+                </div>
+                <div class="panel panel-heading">
+                    <b style="color:#E57C23">@item.GoiGio</b>
                 </div>
                 <div class="panel-footer clearfix">
                     <div class="pull-right">
-                        <div class="DatMua">
-                            <a class="btn btn-success" onclick="addToCart(@item.masach)">Đặt mua</a>
+                        <div class="DatMua" style="margin-bottom:25%">
+                            <a class="btn btn-success" onclick="addToCart(@item.MaDV)">Thuê ngay</a>
                         </div>
                         @*<a href="#" class="btn btn-primary">Order</a>
                             @Html.ActionLink("Read more...", "Detail", new
@@ -119,3 +120,8 @@
         padding: 12px;
     }
 </style>
+
+
+
+
+

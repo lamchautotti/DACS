@@ -12,10 +12,10 @@ namespace DACS.Controllers
     public class HomeController : Controller
     {
         MyDataDataContext data = new MyDataDataContext();
-        public List<Sach> SearchByName(string searchString)
+        public List<DichVu> SearchByName(string searchString)
         {
-            var all_sach = (from ss in data.Saches select ss).Where(m => m.soluongton > 0 && m.tensach.Contains(searchString)).ToList();
-            return all_sach;
+            var all_dd = (from ss in data.DichVus select ss).Where(m => /*m.soluongton > 0 &&*/ m.TenDV.Contains(searchString)).ToList();
+            return all_dd;
         }
         public ActionResult Index(int? page, string searchString)
         {
@@ -23,15 +23,15 @@ namespace DACS.Controllers
             {
                 page = 1;
             }
-            int page_size = 2;
+            int page_size = 6;
             int page_num = page ?? 1;
-            var all_sach = (from ss in data.Saches select ss).Where(m => m.soluongton > 0).OrderBy(m => m.masach);
+            var all_dv = (from ss in data.DichVus select ss).OrderBy(m => m.MaDV);
             if (searchString != null)
             {
                 ViewBag.Keyword = searchString;
                 return View(SearchByName(searchString).ToPagedList(page_num, page_size));
             }
-            return View(all_sach.ToPagedList(page_num, page_size));
+            return View(all_dv.ToPagedList(page_num, page_size));
         }
 
         public ActionResult About()
