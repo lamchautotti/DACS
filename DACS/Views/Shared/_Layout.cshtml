@@ -31,7 +31,10 @@
 
                         <li>@Html.ActionLink("Đăng nhập", "DangNhap", "NguoiDung", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("Đăng ký", "DangKy", "NguoiDung", new { area = "" }, new { @class = "nav-link" })</li>
-
+                        <div class="form-group form-inline" style="display: flex;">
+                            <input type="text" class="form-control col-md-10" value="@ViewBag.Keyword" name="searchString" placeholder="Nhập dịch vụ cần tìm">
+                            <input type="submit" class="btn btn-info" value="Tìm Sách" style="margin-left:10px;">
+                        </div>
                     }
 
                     else
@@ -67,7 +70,7 @@
 
                     }
 
-                </ul>
+                @*</ul>
                 <div class="navbar-right">
                     @if (Session["TaiKhoanND"] != null)
                     {
@@ -78,7 +81,7 @@
                             
                     }
 
-                </div>
+                </div>*@
                 
                 
                 

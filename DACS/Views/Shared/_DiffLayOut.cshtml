@@ -19,7 +19,7 @@
     <!-- sự kiện onload được kích hoạt mỗi khi load trang -->
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark" style="background-color:black">
         <div class="container">
-            @Html.ActionLink("Sách", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Dịch vụ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -33,9 +33,9 @@
                         <li>@Html.ActionLink("Đăng nhập", "DangNhap", "NguoiDung", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("Đăng ký", "DangKy", "NguoiDung", new { area = "" }, new { @class = "nav-link" })</li>
                         <div class="form-group form-inline" style="display: flex;">
-                            <a href="/DichVu/ListDichVu" style="color:gray">Admin</a>
-                            <input type="text" class="form-control col-md-10" value="@ViewBag.Keyword" name="searchString" placeholder="Nhập tên sách cần tìm">
-                            <input type="submit" class="btn btn-info" value="Tìm Sách" style="margin-left:10px;">
+                            
+                            <input type="text" class="form-control col-md-10" value="@ViewBag.Keyword" name="searchString" placeholder="Nhập tên dịch vụ cần tìm">
+                            <input type="submit" class="btn btn-info" value="Tìm dịch vụ" style="margin-left:10px;">
                         </div>
                     }
 
@@ -49,8 +49,8 @@
                             {
 
                                 <div class="form-group form-inline" style="display: flex;">
-                                    <input type="text" class="form-control col-md-10" value="@ViewBag.Keyword" name="searchString" placeholder="Nhập tên sách cần tìm">
-                                    <input type="submit" class="btn btn-info" value="Tìm Sách" style="margin-left:10px;">
+                                    <input type="text" class="form-control col-md-10" value="@ViewBag.Keyword" name="searchString" placeholder="Nhập tên dịch vụ cần tìm">
+                                    <input type="submit" class="btn btn-info" value="Tìm dịch vụ" style="margin-left:10px;">
                                 </div>
                             }
 
@@ -61,8 +61,8 @@
                             {
 
                                 <div class="form-group form-inline" style="display: flex;">
-                                    <input type="text" class="form-control col-md-10" value="@ViewBag.Keyword" name="searchString" placeholder="Nhập tên sách cần tìm">
-                                    <input type="submit" class="btn btn-info" value="Tìm Sách" style="margin-left:10px;">
+                                    <input type="text" class="form-control col-md-10" value="@ViewBag.Keyword" name="searchString" placeholder="Nhập tên dịch vụ cần tìm">
+                                    <input type="submit" class="btn btn-info" value="Tìm dịch vụ" style="margin-left:10px;">
                                 </div>
                             }
                         }
