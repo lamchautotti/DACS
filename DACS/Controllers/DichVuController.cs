@@ -1,6 +1,7 @@
 ﻿using DACS.Models;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -11,9 +12,19 @@ namespace DACS.Controllers
     {
         MyDataDataContext data = new MyDataDataContext();
         // GET: Dich Vu
-        public ActionResult ListDichVu()
+        public List<DichVu> SearchByName(string searchString)
+        {
+            var all_dd = (from tt in data.DichVus select tt).Where(m => m.TenDV.Contains(searchString)).ToList();
+            return all_dd;
+        }
+        public ActionResult ListDichVu(string searchString)
         {
             var allDichVu = from tt in data.DichVus select tt;
+            if (searchString != null)
+            {
+                ViewBag.Keyword = searchString;
+                return View(SearchByName(searchString));
+            }
             return View(allDichVu);
         }
         public ActionResult Detail(int id)
